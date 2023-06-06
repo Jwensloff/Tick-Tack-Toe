@@ -3,8 +3,17 @@
   margin: 0px;
 }
 
+body {
+  background-image: url(assets/pirate-vs-ninja-background.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
 main {
-  height: 100vh;
+ overflow:hidden;
+  margin: 0;
+  height: 100%;
   width: 100%;
   display:flex;
   border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
@@ -15,6 +24,7 @@ section{
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%
 }
 
 .side-section{
@@ -41,5 +51,6 @@ section{
 
 .cell{
   border: 1px solid black; /* DELETE WHEN DONE WITH LAYOUT */
+  background-color: rgba(225, 225, 225, .8);
 }
 
