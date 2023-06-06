@@ -1,18 +1,14 @@
-* {
+body {
   font-family: 'IM Fell DW Pica', serif;
   margin: 0px;
-}
-
-body {
   background-image: url(assets/pirate-vs-ninja-background.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
-  margin: 0;
 }
 
 main {
  overflow:hidden;
-  margin: 0;
+  margin: 0px;
   height: 100%;
   width: 100%;
   display:flex;
@@ -24,17 +20,15 @@ section{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%
+  height: 100%;
 }
 
 .side-section{
-  height: 100%;
   width: 25%;
   border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
 }
 
 .main-section{
-  height: 100%;
   width: 50%;
   border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
 }
@@ -50,7 +44,13 @@ section{
 }
 
 .cell{
-  border: 1px solid black; /* DELETE WHEN DONE WITH LAYOUT */
+  border: 3px solid black; /* DELETE WHEN DONE WITH LAYOUT */
   background-color: rgba(225, 225, 225, .8);
 }
 
+h1,
+h2,
+h3{
+  background-color: rgba(225, 225, 225, .8);
+  font-size: 30px;
+}
