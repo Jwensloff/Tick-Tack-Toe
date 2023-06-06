@@ -1,0 +1,19 @@
+main {
+  height: 100vh;
+  width: 100%;
+  display:flex;
+  border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
+  justify-content: space-evenly;
+}
+
+.side-section{
+  height: 100%;
+  width: 25%;
+  border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
+}
+
+.main-section{
+  height: 100%;
+  width: 50%;
+  border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
+}
