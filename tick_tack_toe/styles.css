@@ -26,7 +26,8 @@ section {
 
 .side-section {
   width: 30%;
-  background-color: rgba(225, 225, 225, .8);
+  margin: 15vh 5vh 0vh 5vh;
+  background-color: rgba(123, 152, 171, .8);
   border: 2px solid black; /* DELETE WHEN DONE WITH LAYOUT */
 }
 
@@ -48,7 +49,7 @@ section {
 .cell {
   box-shadow: 0px 0px 9px 10px inset rgba(29, 58, 78, .5);
   /* border: 3px solid black; DELETE WHEN DONE WITH LAYOUT */
-  background-color: rgba(225, 225, 225, .8);
+  background-color: rgba(183, 201, 213);
   border-radius: 25px;
   display: flex;
   align-items: center;
@@ -67,13 +68,13 @@ h1 {
   font-size: 60px;
   margin: 20px 0px 0px 0px;
   width: 45vh;
-  background-color: rgba(225, 225, 225, .5);
+  background-color: rgba(123, 152, 171, .5);
 }
 
 h2 {
   width: 45vh; 
   margin-top: 0vh;
-  background-color: rgba(225, 225, 225, .5);
+  background-color: rgba(123, 152, 171, .5);
 }
 
 img {
