@@ -5,8 +5,8 @@
 // global variables 
 var allMovesPlayed = []
 
-var pirate = createPlayerObject('one', 'X');
-var ninja = createPlayerObject('two', 'O');
+var pirate = createPlayerObject('pirate', 'X');
+var ninja = createPlayerObject('ninja', 'O');
 var players = {pirate, ninja}
 
 // functions 
@@ -29,6 +29,13 @@ function increaseWins(player){
 function updateGameBoard(cellNumber){
   allMovesPlayed.push(cellNumber)
   return allMovesPlayed
+}
+
+function addPlayerMoves(player, cellNumber){
+  if(players[player].id == player){
+    players[player].moves.push(cellNumber)
+  }
+  return players[player]
 }
 
 
