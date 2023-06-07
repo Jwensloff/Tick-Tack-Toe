@@ -1,10 +1,11 @@
 // query selectors 
-var gameBoardGrid = document.querySelector
+// var gameBoardGrid = document.querySelector
 // event listeners
 
 // global variables 
 var gameBoard = [];
-
+var pirate = createPlayerObject('one', 'X');
+var ninja = createPlayerObject('two', 'O');
 
 
 // functions 
@@ -17,6 +18,11 @@ function createPlayerObject(player, token){
     turn: false,
     class: '',
   }
+}
+
+function increaseWins(player){
+  player.wins +=1
+    return player
 }
 
 // if player.turn = false 
