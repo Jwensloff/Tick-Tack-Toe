@@ -1,17 +1,21 @@
 // query selectors 
-
+var gameBoardGrid = document.querySelector
 // event listeners
 
 // global variables 
-var players = []
+var players = [];
 
 // functions 
 
-function createPlayerObject(player, numberOfWins){
-  return{
+function createPlayerObject(player){
+  return {
     player: player,
-    wins: numberOfWins,
+    wins: 0,
     turn: false,
+    class: '',
   }
 }
+
+// if player.turn = false 
+    // can't click a button. 
 
