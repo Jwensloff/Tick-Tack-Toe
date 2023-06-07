@@ -3,13 +3,16 @@ var gameBoardGrid = document.querySelector
 // event listeners
 
 // global variables 
-var players = [];
+var gameBoard = [];
+
+
 
 // functions 
 
-function createPlayerObject(player){
+function createPlayerObject(player, token){
   return {
-    player: player,
+    id: player,
+    token: token,
     wins: 0,
     turn: false,
     class: '',
