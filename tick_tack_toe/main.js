@@ -3,20 +3,11 @@
 // event listeners
 
 // global variables 
-var gameBoard = [
-                  {cellNumber: 1, open:false},
-                  {cellNumber: 2, open:false},
-                  {cellNumber: 3, open:false},
-                  {cellNumber: 4, open:false},
-                  {cellNumber: 5, open:false},
-                  {cellNumber: 6, open:false},
-                  {cellNumber: 7, open:false},
-                  {cellNumber: 8, open:false},
-                  {cellNumber: 9, open:false}
-                ]
+var allMovesPlayed = []
+
 var pirate = createPlayerObject('one', 'X');
 var ninja = createPlayerObject('two', 'O');
-
+var players = {pirate, ninja}
 
 // functions 
 
@@ -26,7 +17,7 @@ function createPlayerObject(player, token){
     token: token,
     wins: 0,
     turn: false,
-    class: '',
+    moves: [],
   }
 }
 
@@ -35,9 +26,12 @@ function increaseWins(player){
     return player
 }
 
-function createGameBoard(){
-
+function updateGameBoard(cellNumber){
+  allMovesPlayed.push(cellNumber)
+  return allMovesPlayed
 }
+
+
 // create a function that keeps track of game board 
   // iterate through game board? 
   // should game booard be the array that holds objects?
