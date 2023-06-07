@@ -32,10 +32,19 @@ function updateGameBoard(cellNumber){
 }
 
 function addPlayerMoves(player, cellNumber){
+  if(allMovesPlayed.includes(cellNumber)) {
+    return
+  }
   if(players[player].id == player){
     players[player].moves.push(cellNumber)
   }
-  return players[player]
+  joinAllMovesPlayed();
+  return players 
+}
+
+function joinAllMovesPlayed(){
+  allMovesPlayed = pirate.moves.concat(ninja.moves)
+  return allMovesPlayed
 }
 
 
