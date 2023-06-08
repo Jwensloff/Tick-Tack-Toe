@@ -12,7 +12,6 @@ main {
   height: 100%;
   width: 100%;
   display:flex;
-  /* border: 2px solid black; DELETE WHEN DONE WITH LAYOUT */
   justify-content: space-evenly;
   align-items: center;
 }
@@ -25,24 +24,21 @@ section {
 }
 
 .side-section {
-  width: 25vh;
-  height: 30vh;
-  margin: 30vh 5vh 0vh 5vh;
+  width: 30vh;
+  height: 35vh;
+  margin: 35vh 5vh 0vh 5vh;
   border-radius: 25px;
   box-shadow: 0px 0px 9px 10px inset rgba(29, 58, 78, .5);
   background-color: rgba(123, 152, 171, .8);
-  /* border: 2px solid black; DELETE WHEN DONE WITH LAYOUT */
 }
 
 .main-section {
   width: 40%;
-  /* border: 2px solid black; DELETE WHEN DONE WITH LAYOUT */
 }
 
 .wrapper {
-  margin-top: 0vh;
+  margin-top: 5vh;
   width: 75%;
-  /* border: 2px solid black; DELETE WHEN DONE WITH LAYOUT */
   display: grid;
   grid-template-columns: repeat(3, 3fr);
   gap: 2px;
@@ -51,7 +47,6 @@ section {
 
 .cell {
   box-shadow: 0px 0px 9px 10px inset rgba(29, 58, 78, .5);
-  /* border: 3px solid black; DELETE WHEN DONE WITH LAYOUT */
   background-color: rgba(123, 152, 171);
   border-radius: 25px;
   display: flex;
@@ -68,15 +63,13 @@ h3 {
 
 h1 {
   font-size: 60px;
-  margin: 50px 0px 0px 0px;
+  margin: 25px 0px 0px 0px;
   width: 45vh;
-  /* background-color: rgba(123, 152, 171, .2); */
 }
 
-h2 {
-  width: 45vh; 
-  margin-top: 0vh;
-  /* background-color: rgba(123, 152, 171, .2); */
+span {
+  display:block;
+  font-size: 30px ;
 }
 
 .pirate-wins {
