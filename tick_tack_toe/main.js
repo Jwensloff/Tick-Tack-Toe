@@ -3,31 +3,16 @@ var gameBoard = document.querySelector('.wrapper');
 
 var activeTurnDisplay = document.querySelector('h3');
 
-var pirateImage = document.createElement('img');
-var ninjaImage = document.createElement('img');
-// Set the source (src) attribute to your PNG image file
-pirateImage.src = 'assets/pirate.png';
-ninjaImage.src = 'assets/ninja.png';
-
-// Append the <img> element as a child of the <h3> element
-// heading.appendChild(image);
 
 
 gameBoard.addEventListener('click', function(event) {
-  if (currentPlayer === 'pirate'){
-      pirate.moves.push(event.target.id)
-      currentPlayer = 'ninja'
-  } else {
-    ninja.moves.push(event.target.id)
-    currentPlayer = 'pirate'
-  }
-  console.log(currentPlayer) 
+  togglePlayerTurn(event)
 });
 
 // global variables 
 var allMovesPlayed = []
 
-var pirate = createPlayerObject('pirate', '');
+var pirate = createPlayerObject('pirate', 'X');
 var ninja = createPlayerObject('ninja', 'O');
 var currentPlayer = 'pirate'
 
@@ -38,7 +23,6 @@ function createPlayerObject(player, token){
     id: player,
     token: token,
     wins: 0,
-    turn: false,
     moves: [],
   }
 }
@@ -53,67 +37,37 @@ function updateGameBoard(cellNumber){
   return allMovesPlayed
 }
 
-function addPlayerMoves(player, cellNumber){
-  isTurn(player)
-  if(allMovesPlayed.includes(cellNumber)) {
-    return
-  }
-  if(currentPlayer.id === player){
-    currentPlayer.moves.push(cellNumber)
-  }
-  joinAllMovesPlayed();
-  togglePlayerTurn(player)
-  togglePlayerTurnDisplay(player)
-  return players 
-}
-
 function joinAllMovesPlayed(){
   allMovesPlayed = pirate.moves.concat(ninja.moves)
   return allMovesPlayed
 }
 
-function isTurn(player){
-  currentPlayer.turn = true
-  return players
-}
-
-function togglePlayerTurn(player){
-  if(currentPlayer === 'ninja'){
-    players.ninja.turn = false
-    players.pirate.turn = true 
-  } else {
-    players.pirate.turn = false
-    players.ninja.turn = true
+function togglePlayerTurn(event){
+  if(allMovesPlayed.includes(event.target.id)) {
+    return
   }
-  return players
+  if (currentPlayer === 'pirate'){
+    pirate.moves.push(event.target.id)
+    currentPlayer = 'ninja'
+  } else {
+    ninja.moves.push(event.target.id)
+    currentPlayer = 'pirate'
+  }
+  console.log(currentPlayer)
+  joinAllMovesPlayed();
 }
 
-// if ninja.turn = true 
-// click event -->
-  // that means the ninja just played a move 
-      // ninja.turn = false
-      // pirate.turn = true 
-      
-// 'event'.
 
 
-//  if one player.turn = true, other is false 
-// if currentPlayer === ninja
-      // currentPlayer.turn = true 
-      // currentPlayer.turn = false 
-// if currentPlayer === pirate 
-      // currentPlayer.turn = true 
 
-  
-  // ninja.turn === true
-    // pirate.turn = false
-  // if pirate.turn === true
-    // ninja.turn = false
+// var pirateImg = '<img src="assets/pirate.png" alt="Skull and swords" />' 
+// var ninjaImg = '<img src="assets/ninja.png" alt="Ninja silhouette" />'
+    
+//     function togglePlayerTurnDisplay(currentPlayer){
+//       activeTurnDisplay.innerText=''
+//       if(currentPlayer === 'pirate'){
+//         return activeTurnDisplay.innerText= 'It\'s' + pirateImg + 'turn'
+//       } 
+//        return activeTurnDisplay.innerText= 'It\'s' + ninjaImg + 'turn'
 
-
-    function togglePlayerTurnDisplay(player){
-      activeTurnDisplay.innerText=''
-      if(currentPlayer.turn === true){
-        activeTurnDisplay.innerText= `It's ${player.token} turn`
-      }
-    }
+//     }
