@@ -3,16 +3,24 @@ var gameBoard = document.querySelector('.wrapper');
 
 var displayPlayerTurn = document.querySelector('h3');
 
+// event listeners
 gameBoard.addEventListener('click', function(event) {
   togglePlayerTurn(event)
 });
 
-// global variables 
-var allMovesPlayed = []
+window.addEventListener('load', displayFirstTurn)
 
-var pirate = createPlayerObject('pirate', 'X');
-var ninja = createPlayerObject('ninja', 'O');
-var currentPlayer = 'pirate'
+// global variables 
+var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
+var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
+
+var gameBoard = [1, 2, 3, 
+                 4, 5, 6, 
+                 7, 8, 9];
+
+var pirate = createPlayerObject('pirate', pirateImg);
+var ninja = createPlayerObject('ninja', ninjaImg);
+var currentPlayer = 'pirate';
 
 // functions 
 
@@ -20,10 +28,15 @@ function createPlayerObject(player, token){
   return {
     id: player,
     token: token,
+    isTurn: false,
     wins: 0,
     moves: [],
-    goesFirst: false,
   }
+}
+
+function displayFirstTurn(){
+  displayPlayerTurn.innerHTML = ''
+  displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
 }
 
 function increaseWins(player){
@@ -38,9 +51,9 @@ function joinAllMovesPlayed(){
 
 // CAN BE REFACTORED
 function togglePlayerTurn(event){
-  if(allMovesPlayed.includes(event.target.id)) {
-    return
-  }
+  // if(allMovesPlayed.includes(event.target.id)) {
+  //   return
+  // }
   if (currentPlayer === 'pirate'){
     pirate.moves.push(event.target.id)
     currentPlayer = 'ninja'
@@ -51,39 +64,34 @@ function togglePlayerTurn(event){
   console.log(currentPlayer)
   joinAllMovesPlayed();
   togglePlayerTurnDisplay(currentPlayer)
-  checkForWin(currentPlayer)
+  // checkForWin(currentPlayer)
 }
 
 function togglePlayerTurnDisplay(currentPlayer){
-  var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
-  var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
-  
   displayPlayerTurn.innerText=''
-
   if(currentPlayer === 'pirate'){
     return displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
   } 
     return displayPlayerTurn.innerHTML = `It's ${ninjaImg} turn`
-
 }
 
-function checkForWin(currentPlayer){
-  var possibleWins = [
-                      [1,2,3],
-                      [4,5,6],
-                      [7,8,9],
-                      [1,4,7],
-                      [2,5,8],
-                      [3,6,9],
-                      [1,5,9],
-                      [3,5,7]
-                      ];
-  for (var i = 0; i < possibleWins.length; i++) {
-    if (currentPlayer.moves.includes(possibleWins[i])) {
-      return `The ${currentPlayer.id}'s win this round.`
-    }
- }
-}
+// function checkForWin(currentPlayer){
+//   var possibleWins = [
+//                       [1,2,3],
+//                       [4,5,6],
+//                       [7,8,9],
+//                       [1,4,7],
+//                       [2,5,8],
+//                       [3,6,9],
+//                       [1,5,9],
+//                       [3,5,7]
+//                       ];
+//   for (var i = 0; i < possibleWins.length; i++) {
+//     if (currentPlayer.moves.includes(possibleWins[i])) {
+//       return `The ${currentPlayer.id}'s win this round.`
+//     }
+//  }
+// }
     //check current moves for currentPlayer
       //iterate through array of arrays
           //if includes winning moves
@@ -93,6 +101,3 @@ function checkForWin(currentPlayer){
 
 
 
-// create function that randomly assigns player to start on page load
-    // make goesFirst = true
-    //after a win if goes first===true goesFirst= false and vice versa
