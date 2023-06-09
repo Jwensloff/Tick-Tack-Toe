@@ -5,8 +5,8 @@ var displayPlayerTurn = document.querySelector('h3');
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
   addPlayerMoves(event);
-  togglePlayerTurn(currentPlayer);
   updateGameBoard(event);
+  togglePlayerTurn(currentPlayer);
 });
 
 window.addEventListener('load', displayFirstTurn)
@@ -69,10 +69,8 @@ function togglePlayerTurnDisplay(){
 
 function updateGameBoard(event){
   for(var i = 0; i < gameBoard.length; i++){
-    if(event.target.id == gameBoard[i]){
-      console.log(gameBoard[i])
+    if(event.target.id === gameBoard[i]){
       gameBoard.splice(i, 1, currentPlayer.id)
-      console.log(gameBoard)
     }
   }
   return gameBoard
