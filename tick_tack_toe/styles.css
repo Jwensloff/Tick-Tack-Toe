@@ -63,7 +63,7 @@ h3 {
 
 h1 {
   font-size: 60px;
-  margin: 25px 0px 0px 0px;
+  margin: 5px 0px 0px 0px;
   width: 45vh;
 }
 
@@ -80,4 +80,20 @@ img {
   margin-top: 4vh;
   width: 15vh ;
   height: auto;
+}
+
+h3{
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+
+}
+
+.current-player-image {
+  border: 2px solid black;
+  width: 13vh ;
+  height: auto;
+  margin-bottom: 4vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
