@@ -1,12 +1,12 @@
 // query selectors 
 var gameBoardGrid = document.querySelector('.wrapper');
-
 var displayPlayerTurn = document.querySelector('h3');
 
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
   addPlayerMoves(event);
-  togglePlayerTurn();
+  togglePlayerTurn(currentPlayer);
+  // updateGameBoard(event);
 });
 
 window.addEventListener('load', displayFirstTurn)
@@ -45,38 +45,13 @@ function increaseWins(currentPlayer){
     return currentPlayer
 }
 
-// function updateGameBoard(currentPlayer, event){
-//   for(var i=0; i< gameBoard.length; i++){
-//     if (event.target.id
-//   }
-
-// }
-
-// // CAN BE REFACTORED
-// function togglePlayerTurn(){
-//   // if(allMovesPlayed.includes(event.target.id)) {
-//   //   return
-//   // }
-//   if (currentPlayer === 'pirate'){
-//     // pirate.moves.push(event.target.id)
-//     currentPlayer = 'ninja'
-//   } else {
-//     // ninja.moves.push(event.target.id)
-//     currentPlayer = 'pirate'
-//   }
-//   console.log(currentPlayer)
-//   // joinAllMovesPlayed();
-//   togglePlayerTurnDisplay(currentPlayer)
-//   // checkForWin(currentPlayer)
-// }
-
 function togglePlayerTurn(){
   if (currentPlayer === pirate){
     currentPlayer = ninja
   } else {
     currentPlayer = pirate
   }
-  togglePlayerTurnDisplay(currentPlayer)
+  togglePlayerTurnDisplay();
 }
 
 function addPlayerMoves(event){
@@ -84,35 +59,29 @@ function addPlayerMoves(event){
   currentPlayer.moves.push(event.target.id)
 }
 
-function togglePlayerTurnDisplay(currentPlayer){
-  displayPlayerTurn.innerText=''
-  if(currentPlayer === 'pirate'){
+// function updateGameBoard(){
+
+// }
+
+
+function togglePlayerTurnDisplay(){
+  displayPlayerTurn.HTML=''
+  if(currentPlayer === pirate){
     return displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
   } 
     return displayPlayerTurn.innerHTML = `It's ${ninjaImg} turn`
 }
 
-// function checkForWin(currentPlayer){
-//   var possibleWins = [
-//                       [1,2,3],
-//                       [4,5,6],
-//                       [7,8,9],
-//                       [1,4,7],
-//                       [2,5,8],
-//                       [3,6,9],
-//                       [1,5,9],
-//                       [3,5,7]
-//                       ];
-//   for (var i = 0; i < possibleWins.length; i++) {
-//     if (currentPlayer.moves.includes(possibleWins[i])) {
-//       return `The ${currentPlayer.id}'s win this round.`
+// function updateGameBoard(event){
+//   for(var i=0; i < gameBoard.length; i++){
+//     if(event.target.id === gameBoard[i]){
+//       gameBoard[i].replace(i, currentPlayer.id)
 //     }
-//  }
+//   }
 // }
-    //check current moves for currentPlayer
-      //iterate through array of arrays
-          //if includes winning moves
-              // 'current player won the game'
+
+
+
 
 
 
