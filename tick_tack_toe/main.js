@@ -6,7 +6,7 @@ var displayPlayerTurn = document.querySelector('h3');
 gameBoardGrid.addEventListener('click', function(event) {
   addPlayerMoves(event);
   togglePlayerTurn(currentPlayer);
-  // updateGameBoard(event);
+  updateGameBoard(event);
 });
 
 window.addEventListener('load', displayFirstTurn)
@@ -15,9 +15,9 @@ window.addEventListener('load', displayFirstTurn)
 var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
 var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
 
-var gameBoard = [1, 2, 3, 
-                 4, 5, 6, 
-                 7, 8, 9];
+var gameBoard = ['1', '2', '3', 
+                 '4', '5', '6', 
+                 '7', '8', '9'];
 
 var pirate = createPlayerObject('pirate', pirateImg);
 var ninja = createPlayerObject('ninja', ninjaImg);
@@ -59,11 +59,6 @@ function addPlayerMoves(event){
   currentPlayer.moves.push(event.target.id)
 }
 
-// function updateGameBoard(){
-
-// }
-
-
 function togglePlayerTurnDisplay(){
   displayPlayerTurn.HTML=''
   if(currentPlayer === pirate){
@@ -72,18 +67,14 @@ function togglePlayerTurnDisplay(){
     return displayPlayerTurn.innerHTML = `It's ${ninjaImg} turn`
 }
 
-// function updateGameBoard(event){
-//   for(var i=0; i < gameBoard.length; i++){
-//     if(event.target.id === gameBoard[i]){
-//       gameBoard[i].replace(i, currentPlayer.id)
-//     }
-//   }
-// }
-
-
-
-
-
-
-
+function updateGameBoard(event){
+  for(var i = 0; i < gameBoard.length; i++){
+    if(event.target.id == gameBoard[i]){
+      console.log(gameBoard[i])
+      gameBoard.splice(i, 1, currentPlayer.id)
+      console.log(gameBoard)
+    }
+  }
+  return gameBoard
+}
 
