@@ -1,11 +1,12 @@
 // query selectors 
-var gameBoard = document.querySelector('.wrapper');
+var gameBoardGrid = document.querySelector('.wrapper');
 
 var displayPlayerTurn = document.querySelector('h3');
 
 // event listeners
-gameBoard.addEventListener('click', function(event) {
-  togglePlayerTurn(event)
+gameBoardGrid.addEventListener('click', function(event) {
+  addPlayerMoves(event);
+  togglePlayerTurn();
 });
 
 window.addEventListener('load', displayFirstTurn)
@@ -20,7 +21,7 @@ var gameBoard = [1, 2, 3,
 
 var pirate = createPlayerObject('pirate', pirateImg);
 var ninja = createPlayerObject('ninja', ninjaImg);
-var currentPlayer = 'pirate';
+var currentPlayer = pirate;
 
 // functions 
 
@@ -39,32 +40,48 @@ function displayFirstTurn(){
   displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
 }
 
-function increaseWins(player){
-  player.wins +=1
-    return player
+function increaseWins(currentPlayer){
+  currentPlayer.wins +=1
+    return currentPlayer
 }
 
-function joinAllMovesPlayed(){
-  allMovesPlayed = pirate.moves.concat(ninja.moves)
-  return allMovesPlayed
-}
+// function updateGameBoard(currentPlayer, event){
+//   for(var i=0; i< gameBoard.length; i++){
+//     if (event.target.id
+//   }
 
-// CAN BE REFACTORED
-function togglePlayerTurn(event){
-  // if(allMovesPlayed.includes(event.target.id)) {
-  //   return
-  // }
-  if (currentPlayer === 'pirate'){
-    pirate.moves.push(event.target.id)
-    currentPlayer = 'ninja'
+// }
+
+// // CAN BE REFACTORED
+// function togglePlayerTurn(){
+//   // if(allMovesPlayed.includes(event.target.id)) {
+//   //   return
+//   // }
+//   if (currentPlayer === 'pirate'){
+//     // pirate.moves.push(event.target.id)
+//     currentPlayer = 'ninja'
+//   } else {
+//     // ninja.moves.push(event.target.id)
+//     currentPlayer = 'pirate'
+//   }
+//   console.log(currentPlayer)
+//   // joinAllMovesPlayed();
+//   togglePlayerTurnDisplay(currentPlayer)
+//   // checkForWin(currentPlayer)
+// }
+
+function togglePlayerTurn(){
+  if (currentPlayer === pirate){
+    currentPlayer = ninja
   } else {
-    ninja.moves.push(event.target.id)
-    currentPlayer = 'pirate'
+    currentPlayer = pirate
   }
-  console.log(currentPlayer)
-  joinAllMovesPlayed();
   togglePlayerTurnDisplay(currentPlayer)
-  // checkForWin(currentPlayer)
+}
+
+function addPlayerMoves(event){
+  console.log(currentPlayer)
+  currentPlayer.moves.push(event.target.id)
 }
 
 function togglePlayerTurnDisplay(currentPlayer){
