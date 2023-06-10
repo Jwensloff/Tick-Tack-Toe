@@ -7,6 +7,7 @@ gameBoardGrid.addEventListener('click', function(event) {
   if (gameBoard[parseInt(event.target.id)] === event.target.id) {
     addPlayerTokenToGameBoard(event);
     updateGameBoard(event);
+    checkForWinCondition();
     togglePlayerTurn(currentPlayer);
   }
 });
@@ -76,5 +77,40 @@ function addPlayerTokenToGameBoard(event){
 }
 
 function checkForWinCondition(){
-  
+  var id = currentPlayer.id
+
+  if (gameBoard[0] === id && 
+      gameBoard[1] === id && 
+      gameBoard[2] === id) {
+        console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[3] === id && 
+             gameBoard[4] === id && 
+             gameBoard[5] === id) {
+      console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[6] === id && 
+             gameBoard[7] === id && 
+             gameBoard[8] === id) {
+      console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[0] === id && 
+             gameBoard[3] === id && 
+             gameBoard[6] === id) {
+         console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[1] === id && 
+             gameBoard[4] === id && 
+             gameBoard[7] === id) {
+          console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[2] === id && 
+             gameBoard[5] === id && 
+             gameBoard[8] === id) {
+       console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[0] === id && 
+             gameBoard[4] === id && 
+             gameBoard[8] === id) {
+  console.log(`The ${id}'s have won this battle!`)
+  } else if (gameBoard[0] === id && 
+             gameBoard[4] === id && 
+             gameBoard[8] === id) {
+    console.log(`The ${id}'s have won this battle!`)
+  }
+  return
 }
