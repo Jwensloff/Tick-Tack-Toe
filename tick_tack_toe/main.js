@@ -5,6 +5,7 @@ var displayPlayerTurn = document.querySelector('h3');
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
   addPlayerMoves(event);
+  addPlayerTokenToGameBoard(event)
   updateGameBoard(event);
   togglePlayerTurn(currentPlayer);
 });
@@ -55,7 +56,6 @@ function togglePlayerTurn(){
 }
 
 function addPlayerMoves(event){
-  console.log(currentPlayer)
   currentPlayer.moves.push(event.target.id)
 }
 
@@ -76,3 +76,6 @@ function updateGameBoard(event){
   return gameBoard
 }
 
+function addPlayerTokenToGameBoard(event){
+  event.target.innerHTML = currentPlayer.token
+}
