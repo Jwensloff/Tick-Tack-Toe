@@ -1,18 +1,28 @@
 // query selectors 
-var gameBoard = document.querySelector('.wrapper');
-
+var gameBoardGrid = document.querySelector('.wrapper');
 var displayPlayerTurn = document.querySelector('h3');
 
-gameBoard.addEventListener('click', function(event) {
-  togglePlayerTurn(event)
+// event listeners
+gameBoardGrid.addEventListener('click', function(event) {
+  addPlayerMoves(event);
+  addPlayerTokenToGameBoard(event)
+  updateGameBoard(event);
+  togglePlayerTurn(currentPlayer);
 });
 
-// global variables 
-var allMovesPlayed = []
+window.addEventListener('load', displayFirstTurn)
 
-var pirate = createPlayerObject('pirate', 'X');
-var ninja = createPlayerObject('ninja', 'O');
-var currentPlayer = 'pirate'
+// global variables 
+var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
+var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
+
+var gameBoard = ['1', '2', '3', 
+                 '4', '5', '6', 
+                 '7', '8', '9'];
+
+var pirate = createPlayerObject('pirate', pirateImg);
+var ninja = createPlayerObject('ninja', ninjaImg);
+var currentPlayer = pirate;
 
 // functions 
 
@@ -20,79 +30,53 @@ function createPlayerObject(player, token){
   return {
     id: player,
     token: token,
+    isTurn: false,
     wins: 0,
     moves: [],
-    goesFirst: false,
   }
 }
 
-function increaseWins(player){
-  player.wins +=1
-    return player
+function displayFirstTurn(){
+  displayPlayerTurn.innerHTML = ''
+  displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
 }
 
-function joinAllMovesPlayed(){
-  allMovesPlayed = pirate.moves.concat(ninja.moves)
-  return allMovesPlayed
+function increaseWins(currentPlayer){
+  currentPlayer.wins +=1
+    return currentPlayer
 }
 
-// CAN BE REFACTORED
-function togglePlayerTurn(event){
-  if(allMovesPlayed.includes(event.target.id)) {
-    return
-  }
-  if (currentPlayer === 'pirate'){
-    pirate.moves.push(event.target.id)
-    currentPlayer = 'ninja'
+function togglePlayerTurn(){
+  if (currentPlayer === pirate){
+    currentPlayer = ninja
   } else {
-    ninja.moves.push(event.target.id)
-    currentPlayer = 'pirate'
+    currentPlayer = pirate
   }
-  console.log(currentPlayer)
-  joinAllMovesPlayed();
-  togglePlayerTurnDisplay(currentPlayer)
-  checkForWin(currentPlayer)
+  togglePlayerTurnDisplay();
 }
 
-function togglePlayerTurnDisplay(currentPlayer){
-  var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
-  var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
-  
-  displayPlayerTurn.innerText=''
+function addPlayerMoves(event){
+  currentPlayer.moves.push(event.target.id)
+}
 
-  if(currentPlayer === 'pirate'){
+function togglePlayerTurnDisplay(){
+  displayPlayerTurn.HTML=''
+  if(currentPlayer === pirate){
     return displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
   } 
     return displayPlayerTurn.innerHTML = `It's ${ninjaImg} turn`
-
 }
 
-function checkForWin(currentPlayer){
-  var possibleWins = [
-                      [1,2,3],
-                      [4,5,6],
-                      [7,8,9],
-                      [1,4,7],
-                      [2,5,8],
-                      [3,6,9],
-                      [1,5,9],
-                      [3,5,7]
-                      ];
-  for (var i = 0; i < possibleWins.length; i++) {
-    if (currentPlayer.moves.includes(possibleWins[i])) {
-      return `The ${currentPlayer.id}'s win this round.`
+function updateGameBoard(event){
+  for(var i = 0; i < gameBoard.length; i++){
+    if(event.target.id === gameBoard[i]){
+      gameBoard.splice(i, 1, currentPlayer.id)
     }
- }
+  }
+  return gameBoard
 }
-    //check current moves for currentPlayer
-      //iterate through array of arrays
-          //if includes winning moves
-              // 'current player won the game'
 
+function addPlayerTokenToGameBoard(event){
+  event.target.innerHTML = currentPlayer.token
+}
 
-
-
-
-// create function that randomly assigns player to start on page load
-    // make goesFirst = true
-    //after a win if goes first===true goesFirst= false and vice versa
