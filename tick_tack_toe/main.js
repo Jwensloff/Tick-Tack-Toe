@@ -8,7 +8,6 @@ gameBoardGrid.addEventListener('click', function(event) {
     addPlayerTokenToGameBoard(event);
     updateGameBoard(event);
     checkForWinCondition();
-    togglePlayerTurn(currentPlayer);
   }
 });
 
@@ -76,41 +75,65 @@ function addPlayerTokenToGameBoard(event){
   event.target.innerHTML = currentPlayer.token
 }
 
+function announceWinnerAndEndGame(){
+  displayPlayerTurn.innerHTML = ''
+  displayPlayerTurn.innerHTML = `The ${currentPlayer.id}'s have won this battle.`
+}
+
 function checkForWinCondition(){
   var id = currentPlayer.id
 
   if (gameBoard[0] === id && 
       gameBoard[1] === id && 
       gameBoard[2] === id) {
-        console.log(`The ${id}'s have won this battle!`)
+      announceWinnerAndEndGame()
+      return
   } else if (gameBoard[3] === id && 
              gameBoard[4] === id && 
              gameBoard[5] === id) {
-      console.log(`The ${id}'s have won this battle!`)
+              announceWinnerAndEndGame()
+              return
   } else if (gameBoard[6] === id && 
              gameBoard[7] === id && 
              gameBoard[8] === id) {
-      console.log(`The ${id}'s have won this battle!`)
+              announceWinnerAndEndGame()
+              return
   } else if (gameBoard[0] === id && 
              gameBoard[3] === id && 
              gameBoard[6] === id) {
-         console.log(`The ${id}'s have won this battle!`)
+              announceWinnerAndEndGame()
+              return
   } else if (gameBoard[1] === id && 
              gameBoard[4] === id && 
              gameBoard[7] === id) {
-          console.log(`The ${id}'s have won this battle!`)
+              announceWinnerAndEndGame()
+              return
   } else if (gameBoard[2] === id && 
              gameBoard[5] === id && 
              gameBoard[8] === id) {
-       console.log(`The ${id}'s have won this battle!`)
+              announceWinnerAndEndGame()
+              return
   } else if (gameBoard[0] === id && 
              gameBoard[4] === id && 
              gameBoard[8] === id) {
-  console.log(`The ${id}'s have won this battle!`)
-  } else if (gameBoard[0] === id && 
+              announceWinnerAndEndGame()
+              return
+  } else if (gameBoard[2] === id && 
              gameBoard[4] === id && 
-             gameBoard[8] === id) {
-    console.log(`The ${id}'s have won this battle!`)
+             gameBoard[6] === id) {
+              announceWinnerAndEndGame()
+              return
   }
-  return
+
+  
+  togglePlayerTurn(currentPlayer);
+
 }
+
+
+// right now, if a player wins, the h3 elemtn reflects that. 
+  // but the user can still add tokens. 
+
+  //helper function? 
+    // -if no win condition: 
+          // toggle player turn
