@@ -79,3 +79,4 @@ function updateGameBoard(event){
 function addPlayerTokenToGameBoard(event){
   event.target.innerHTML = currentPlayer.token
 }
+
