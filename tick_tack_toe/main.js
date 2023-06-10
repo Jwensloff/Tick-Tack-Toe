@@ -4,10 +4,11 @@ var displayPlayerTurn = document.querySelector('h3');
 
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
-  addPlayerMoves(event);
-  addPlayerTokenToGameBoard(event)
-  updateGameBoard(event);
-  togglePlayerTurn(currentPlayer);
+  if (gameBoard[parseInt(event.target.id)] === event.target.id) {
+    addPlayerTokenToGameBoard(event);
+    updateGameBoard(event);
+    togglePlayerTurn(currentPlayer);
+  }
 });
 
 window.addEventListener('load', displayFirstTurn)
@@ -16,9 +17,7 @@ window.addEventListener('load', displayFirstTurn)
 var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
 var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
 
-var gameBoard = ['1', '2', '3', 
-                 '4', '5', '6', 
-                 '7', '8', '9'];
+var gameBoard = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 
 var pirate = createPlayerObject('pirate', pirateImg);
 var ninja = createPlayerObject('ninja', ninjaImg);
@@ -55,10 +54,6 @@ function togglePlayerTurn(){
   togglePlayerTurnDisplay();
 }
 
-function addPlayerMoves(event){
-  currentPlayer.moves.push(event.target.id)
-}
-
 function togglePlayerTurnDisplay(){
   displayPlayerTurn.HTML=''
   if(currentPlayer === pirate){
@@ -80,3 +75,6 @@ function addPlayerTokenToGameBoard(event){
   event.target.innerHTML = currentPlayer.token
 }
 
+function checkForWinCondition(){
+  
+}
