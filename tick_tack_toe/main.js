@@ -58,11 +58,7 @@ function increaseWins(currentPlayer){
 }
 
 function togglePlayerTurn(){
-  if (currentPlayer === pirate){
-    currentPlayer = ninja
-  } else {
-    currentPlayer = pirate
-  }
+  currentPlayer = (currentPlayer === pirate) ? ninja : pirate; 
   togglePlayerTurnDisplay();
 }
 
@@ -96,10 +92,7 @@ function announceWinnerAndEndGame(){
   setTimeout(resetBoard, 3000)
 }
 
-function checkForWinCondition(){
-
-  var id = currentPlayer.id
-   
+function checkForWinCondition(){   
   if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
       announceWinnerAndEndGame()
       return
@@ -155,9 +148,9 @@ function resetBoard(){
     gameBoardCells[i].innerHTML=''
   }
 
-startingPlayer = (startingPlayer===pirate) ? ninja : pirate; 
-currentPlayer = startingPlayer;
-allowClick = true;
-togglePlayerTurnDisplay()
+  startingPlayer = (startingPlayer === pirate) ? ninja : pirate; 
+  currentPlayer = startingPlayer;
+  allowClick = true;
+  togglePlayerTurnDisplay()
 }
 
