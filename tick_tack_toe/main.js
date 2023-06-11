@@ -1,6 +1,10 @@
 // query selectors 
 var gameBoardGrid = document.querySelector('.wrapper');
 var displayPlayerTurn = document.querySelector('h3');
+var pirateWins = document.querySelector('.pirate-wins');
+var ninjaWins = document.querySelector('.ninja-wins');
+var gameBoardCells = document.querySelectorAll('.cell')
+
 
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
@@ -18,18 +22,18 @@ var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ni
 
 var gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-var pirate = createPlayerObject('pirate', pirateImg);
-var ninja = createPlayerObject('ninja', ninjaImg);
+var pirate = createPlayerObject('pirate', pirateImg, pirateWins);
+var ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
 var currentPlayer = pirate;
 var startingPlayer = pirate;
 
 // functions 
 
-function createPlayerObject(player, token){
+function createPlayerObject(player, token, htmlElement){
   return {
     id: player,
     token: token,
-    isTurn: false,
+    numWinsDisplay: htmlElement,
     wins: 0,
   }
 }
@@ -41,7 +45,11 @@ function displayFirstTurn(){
 
 function increaseWins(currentPlayer){
   currentPlayer.wins +=1
-    return currentPlayer
+
+  currentPlayer.numWinsDisplay.innerText = ''
+  currentPlayer.numWinsDisplay.innerText = `${currentPlayer.wins} wins`
+
+  return currentPlayer
 }
 
 function togglePlayerTurn(){
@@ -78,6 +86,8 @@ function addPlayerTokenToGameBoard(event){
 function announceWinnerAndEndGame(){
   displayPlayerTurn.innerHTML = ''
   displayPlayerTurn.innerHTML = `The ${currentPlayer.id}'s have won this battle.`
+  increaseWins(currentPlayer)
+  setTimeout(resetBoard, 3000)
 }
 
 function checkForWinCondition(){
@@ -141,15 +151,22 @@ function checkForDraw(){
   } 
   if (count === 0){
     displayPlayerTurn.innerHTML = `It's a draw.`
+    setTimeout(resetBoard, 3000)
     return true
   } else {
     return false
   }
 }
 
-// right now, if a player wins, the h3 elemtn reflects that. 
-  // but the user can still add tokens. 
+function resetBoard(){
+  console.log('hi')
+  gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-  //helper function? 
-    // -if no win condition: 
-          // toggle player turn
+  for (var i = 0; i<gameBoardCells.length; i++){
+    gameBoardCells[i].innerHTML=''
+  }
+
+startingPlayer = (startingPlayer===pirate) ? ninja : pirate 
+currentPlayer = startingPlayer
+togglePlayerTurnDisplay()
+}
