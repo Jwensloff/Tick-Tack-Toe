@@ -100,46 +100,30 @@ function checkForWinCondition(){
 
   var id = currentPlayer.id
    
-  if (gameBoard[0] === id && 
-      gameBoard[1] === id && 
-      gameBoard[2] === id) {
+  if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
       announceWinnerAndEndGame()
       return
-  } else if (gameBoard[3] === id && 
-             gameBoard[4] === id && 
-             gameBoard[5] === id) {
-              announceWinnerAndEndGame()
-              return true 
-  } else if (gameBoard[6] === id && 
-             gameBoard[7] === id && 
-             gameBoard[8] === id) {
-              announceWinnerAndEndGame()
-              return true 
-  } else if (gameBoard[0] === id && 
-             gameBoard[3] === id && 
-             gameBoard[6] === id) {
-              announceWinnerAndEndGame()
-              return true 
-  } else if (gameBoard[1] === id && 
-             gameBoard[4] === id && 
-             gameBoard[7] === id) {
-              announceWinnerAndEndGame()
-              return true 
-  } else if (gameBoard[2] === id && 
-             gameBoard[5] === id && 
-             gameBoard[8] === id) {
-              announceWinnerAndEndGame()
-              return true 
-  } else if (gameBoard[0] === id && 
-             gameBoard[4] === id && 
-             gameBoard[8] === id) {
-              announceWinnerAndEndGame()
-              return true
-  } else if (gameBoard[2] === id && 
-             gameBoard[4] === id && 
-             gameBoard[6] === id) {
-              announceWinnerAndEndGame()
-              return true
+  } else if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5]) {
+      announceWinnerAndEndGame()
+      return
+  } else if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]) {
+      announceWinnerAndEndGame()
+      return 
+  } else if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6]) {
+      announceWinnerAndEndGame()
+      return 
+  } else if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7]) {
+      announceWinnerAndEndGame()
+      return 
+  } else if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8]) {
+      announceWinnerAndEndGame()
+      return 
+  } else if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8]) {
+      announceWinnerAndEndGame()
+      return 
+  } else if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]) {
+      announceWinnerAndEndGame()
+      return 
   }
   
    if(checkForDraw() === false){
@@ -165,7 +149,6 @@ function checkForDraw(){
 }
 
 function resetBoard(){
-  console.log('hi')
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
   for (var i = 0; i<gameBoardCells.length; i++){
