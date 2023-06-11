@@ -9,6 +9,9 @@ var gameBoardCells = document.querySelectorAll('.cell')
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
   if (gameBoard[parseInt(event.target.id)] === parseInt(event.target.id)) {
+    if(allowClick === false){
+      return
+    }
     updateGameBoard(event);
     checkForWinCondition();
   }
@@ -24,8 +27,10 @@ var gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 var pirate = createPlayerObject('pirate', pirateImg, pirateWins);
 var ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
+
 var currentPlayer = pirate;
 var startingPlayer = pirate;
+var allowClick = true;
 
 // functions 
 
@@ -84,6 +89,7 @@ function addPlayerTokenToGameBoard(event){
 }
 
 function announceWinnerAndEndGame(){
+  allowClick = false
   displayPlayerTurn.innerHTML = ''
   displayPlayerTurn.innerHTML = `The ${currentPlayer.id}'s have won this battle.`
   increaseWins(currentPlayer)
@@ -166,7 +172,9 @@ function resetBoard(){
     gameBoardCells[i].innerHTML=''
   }
 
-startingPlayer = (startingPlayer===pirate) ? ninja : pirate 
-currentPlayer = startingPlayer
+startingPlayer = (startingPlayer===pirate) ? ninja : pirate; 
+currentPlayer = startingPlayer;
+allowClick = true;
 togglePlayerTurnDisplay()
 }
+
