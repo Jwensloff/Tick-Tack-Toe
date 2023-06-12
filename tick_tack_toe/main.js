@@ -23,10 +23,10 @@ window.addEventListener('load', displayFirstTurn)
 var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
 var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />'
 
-var gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
 var pirate = createPlayerObject('pirate', pirateImg, pirateWins);
 var ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
+
+var gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 var currentPlayer = pirate;
 var startingPlayer = pirate;
@@ -71,7 +71,7 @@ function togglePlayerTurnDisplay(){
 }
 
 function updateGameBoard(event){
-  for(var i = 0; i < gameBoard.length; i++){
+  for (var i = 0; i < gameBoard.length; i++){
     if(parseInt(event.target.id) === gameBoard[i]){
       gameBoard.splice(i, 1, currentPlayer.id)
     }
@@ -117,11 +117,9 @@ function checkForWinCondition(){
   } else if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]) {
       announceWinnerAndEndGame()
       return 
-  }
-  
-   if(checkForDraw() === false){
-    togglePlayerTurn(currentPlayer);
-   }
+  } if(checkForDraw() === false){
+      togglePlayerTurn(currentPlayer);
+    }
 }
 
 function checkForDraw(){
@@ -132,7 +130,7 @@ function checkForDraw(){
       count += 1
     } 
   } 
-
+  
   if (count === 0){
     displayPlayerTurn.innerHTML = `It's a draw.`
     setTimeout(resetBoard, 3000)
@@ -145,7 +143,7 @@ function checkForDraw(){
 function resetBoard(){
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-  for (var i = 0; i<gameBoardCells.length; i++){
+  for (var i = 0; i < gameBoardCells.length; i++){
     gameBoardCells[i].innerHTML=''
   }
 
