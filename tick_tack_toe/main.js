@@ -152,4 +152,3 @@ function resetBoard(){
   allowClick = true;
   togglePlayerTurnDisplay()
 }
-
