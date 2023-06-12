@@ -87,11 +87,9 @@ h3{
   align-items: center;
   margin-top: 5vh;
   height: 10vh;
-  /* border: 2px solid black; */
 }
 
 .current-player-image {
-  /* border: 2px solid black; */
   width: 8vh ;
   height: auto;
   margin-bottom: 4vh;

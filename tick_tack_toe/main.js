@@ -81,7 +81,7 @@ function updateGameBoard(event){
 }
 
 function addPlayerTokenToGameBoard(event){
-    event.target.innerHTML = currentPlayer.token
+  event.target.innerHTML = currentPlayer.token
 }
 
 function announceWinnerAndEndGame(){
@@ -132,6 +132,7 @@ function checkForDraw(){
       count += 1
     } 
   } 
+
   if (count === 0){
     displayPlayerTurn.innerHTML = `It's a draw.`
     setTimeout(resetBoard, 3000)
