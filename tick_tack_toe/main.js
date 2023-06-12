@@ -1,10 +1,9 @@
 // query selectors 
 var gameBoardGrid = document.querySelector('.wrapper');
-var displayPlayerTurn = document.querySelector('h3');
+var displayPlayerTurn = document.querySelector('h2');
 var pirateWins = document.querySelector('.pirate-wins');
 var ninjaWins = document.querySelector('.ninja-wins');
 var gameBoardCells = document.querySelectorAll('.cell')
-
 
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
@@ -16,8 +15,6 @@ gameBoardGrid.addEventListener('click', function(event) {
     checkForWinCondition();
   }
 });
-
-window.addEventListener('load', displayFirstTurn)
 
 // global variables 
 var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />' 
@@ -41,11 +38,6 @@ function createPlayerObject(player, token, htmlElement){
     numWinsDisplay: htmlElement,
     wins: 0,
   }
-}
-
-function displayFirstTurn(){
-  displayPlayerTurn.innerHTML = ''
-  displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`
 }
 
 function increaseWins(currentPlayer){
@@ -92,6 +84,7 @@ function announceWinnerAndEndGame(){
   setTimeout(resetBoard, 3000)
 }
 
+// 
 function checkForWinCondition(){   
   if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
       announceWinnerAndEndGame()
@@ -126,7 +119,7 @@ function checkForDraw(){
   var count = 0 
 
   for (var i = 0; i < gameBoard.length; i++){
-    if(gameBoard.includes(i)) {
+    if (gameBoard.includes(i)) {
       count += 1
     } 
   } 
