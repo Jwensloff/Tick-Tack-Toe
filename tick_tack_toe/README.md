@@ -1,8 +1,9 @@
-# Tick Tack Toe 
+# Tick Tack Toe: 
+## Pirates vs. Ninjas edition 
 
 ### Abstract
 
-This project allows users to enjoy a classic game of tick tack toe. A heading above the board will toggle to indicate which players turn it is. If a player wins a round, the banner above the board will indicate which player won, and the number of wins will be tracked and displayed below the player icon on either side of the game's board. Lastly, if there is a draw, neither player's score will increase, and the header above the board will indicate that the outcome was a draw.   
+This project allows users to enjoy a classic game of tick tack toe with a themed twist. A heading above the board will toggle to indicate which players turn it is. If a player wins a round, the banner above the board will indicate which player won, and the number of wins will be tracked and displayed below the player icon on either side of the game's board. Lastly, if there is a draw, neither player's score will increase, and the header above the board will indicate that the outcome was a draw.   
 
 ### Installation instructions
 

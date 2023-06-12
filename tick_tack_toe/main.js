@@ -8,7 +8,7 @@ var gameBoardCells = document.querySelectorAll('.cell');
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
   if (gameBoard[parseInt(event.target.id)] === parseInt(event.target.id)) {
-    if(allowClick === false){
+    if (allowClick === false){
       return;
     }
     updateGameBoard(event);
@@ -56,7 +56,7 @@ function togglePlayerTurn(){
 
 function togglePlayerTurnDisplay(){
   displayPlayerTurn.HTML='';
-  if(currentPlayer === pirate){
+  if (currentPlayer === pirate){
     return displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`;
   } 
     return displayPlayerTurn.innerHTML = `It's ${ninjaImg} turn`;
@@ -64,7 +64,7 @@ function togglePlayerTurnDisplay(){
 
 function updateGameBoard(event){
   for (var i = 0; i < gameBoard.length; i++){
-    if(parseInt(event.target.id) === gameBoard[i]){
+    if (parseInt(event.target.id) === gameBoard[i]){
       gameBoard.splice(i, 1, currentPlayer.id);
     }
   }
@@ -87,32 +87,34 @@ function announceWinnerAndEndGame(){
 // 
 function checkForWinCondition(){   
   if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
-      announceWinnerAndEndGame();
-      return;
+    announceWinnerAndEndGame();
+    return;
   } else if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5]) {
-      announceWinnerAndEndGame();
-      return;
+    announceWinnerAndEndGame();
+    return;
   } else if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]) {
-      announceWinnerAndEndGame();
-      return;
+    announceWinnerAndEndGame();
+    return;
   } else if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6]) {
-      announceWinnerAndEndGame();
-      return; 
+    announceWinnerAndEndGame();
+    return; 
   } else if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7]) {
-      announceWinnerAndEndGame();
-      return; 
+    announceWinnerAndEndGame();
+    return; 
   } else if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8]) {
-      announceWinnerAndEndGame();
-      return; 
+    announceWinnerAndEndGame();
+    return; 
   } else if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8]) {
-      announceWinnerAndEndGame();
-      return; 
+    announceWinnerAndEndGame();
+    return; 
   } else if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]) {
-      announceWinnerAndEndGame();
-      return; 
-  } if(checkForDraw() === false){
-      togglePlayerTurn(currentPlayer);
+    announceWinnerAndEndGame();
+    return; 
+  } else {
+    if (checkForDraw() === false){
+    togglePlayerTurn(currentPlayer);
     }
+  }
 }
 
 function checkForDraw(){
