@@ -38,12 +38,12 @@ section {
 }
 
 .wrapper {
-  margin-top: 5px;
+  margin-top: 10px;
   width: 75%;
   display: grid;
   grid-template-columns: repeat(3, 3fr);
   gap: 2px;
-  grid-auto-rows: minmax(125px, 40px);
+  grid-auto-rows: minmax(100px, 40px);
 }
 
 .cell {
@@ -95,5 +95,5 @@ img {
 
 .current-player-image {
   width: 60px ;
-  height: 70px;
+  height: 60px;
 }
