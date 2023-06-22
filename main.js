@@ -20,18 +20,12 @@ gameBoardGrid.addEventListener('click', function(event) {
 const pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />';
 const ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />';
 
-const pirate = createPlayerObject('pirate', pirateImg, pirateWins);
-const ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
-
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
-let currentPlayer = pirate;
-let startingPlayer = pirate;
 let allowClick = true;
 
-// functions 
+// create player objects and variables 
 
-function createPlayerObject(player, token, htmlElement){
+let createPlayerObject = (player, token, htmlElement) => {
   return {
     id: player,
     token: token,
@@ -40,7 +34,14 @@ function createPlayerObject(player, token, htmlElement){
   }
 }
 
-function increaseWins(currentPlayer){
+const pirate = createPlayerObject('pirate', pirateImg, pirateWins);
+const ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
+let currentPlayer = pirate;
+let startingPlayer = pirate;
+
+
+
+let increaseWins =  currentPlayer => {
   currentPlayer.wins +=1;
 
   currentPlayer.numWinsDisplay.innerText = '';
@@ -49,12 +50,12 @@ function increaseWins(currentPlayer){
   return currentPlayer;
 }
 
-function togglePlayerTurn(){
+let togglePlayerTurn = () => {
   currentPlayer = (currentPlayer === pirate) ? ninja : pirate; 
   togglePlayerTurnDisplay();
 }
 
-function togglePlayerTurnDisplay(){
+let togglePlayerTurnDisplay = () => {
   displayPlayerTurn.HTML='';
   if (currentPlayer === pirate){
     return displayPlayerTurn.innerHTML = `It's ${pirateImg} turn`;
@@ -62,7 +63,7 @@ function togglePlayerTurnDisplay(){
     return displayPlayerTurn.innerHTML = `It's ${ninjaImg} turn`;
 }
 
-function updateGameBoard(event){
+let updateGameBoard = (event) => {
   for (var i = 0; i < gameBoard.length; i++){
     if (parseInt(event.target.id) === gameBoard[i]){
       gameBoard.splice(i, 1, currentPlayer.id);
@@ -72,11 +73,11 @@ function updateGameBoard(event){
   return gameBoard;
 }
 
-function addPlayerTokenToGameBoard(event){
+let addPlayerTokenToGameBoard = (event) => {
   event.target.innerHTML = currentPlayer.token;
 }
 
-function announceWinnerAndEndGame(){
+let announceWinnerAndEndGame = () => {
   allowClick = false;
   displayPlayerTurn.innerHTML = '';
   displayPlayerTurn.innerHTML = `The ${currentPlayer.id}'s have won this battle.`;
@@ -84,8 +85,8 @@ function announceWinnerAndEndGame(){
   setTimeout(resetBoard, 4000);
 }
 
-// 
-function checkForWinCondition(){   
+
+let checkForWinCondition = () => {   
   if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
     announceWinnerAndEndGame();
     return;
@@ -117,7 +118,7 @@ function checkForWinCondition(){
   }
 }
 
-function checkForDraw(){
+let checkForDraw = () => {
   let count = 0; 
 
   for (var i = 0; i < gameBoard.length; i++){
@@ -135,7 +136,7 @@ function checkForDraw(){
   }
 }
 
-function resetBoard(){
+let resetBoard = () => {
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
   for (var i = 0; i < gameBoardCells.length; i++){
