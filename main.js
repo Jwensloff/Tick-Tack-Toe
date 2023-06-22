@@ -1,9 +1,9 @@
 // query selectors 
-var gameBoardGrid = document.querySelector('.wrapper');
-var displayPlayerTurn = document.querySelector('h2');
-var pirateWins = document.querySelector('.pirate-wins');
-var ninjaWins = document.querySelector('.ninja-wins');
-var gameBoardCells = document.querySelectorAll('.cell');
+const gameBoardGrid = document.querySelector('.wrapper');
+const displayPlayerTurn = document.querySelector('h2');
+const pirateWins = document.querySelector('.pirate-wins');
+const ninjaWins = document.querySelector('.ninja-wins');
+const gameBoardCells = document.querySelectorAll('.cell');
 
 // event listeners
 gameBoardGrid.addEventListener('click', function(event) {
@@ -17,17 +17,17 @@ gameBoardGrid.addEventListener('click', function(event) {
 });
 
 // global variables 
-var pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />';
-var ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />';
+const pirateImg = '<img class="current-player-image" src="assets/pirate.png" alt="Skull and swords" />';
+const ninjaImg = '<img class="current-player-image" src="assets/ninja.png" alt="Ninja silhouette" />';
 
-var pirate = createPlayerObject('pirate', pirateImg, pirateWins);
-var ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
+const pirate = createPlayerObject('pirate', pirateImg, pirateWins);
+const ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
 
-var gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-var currentPlayer = pirate;
-var startingPlayer = pirate;
-var allowClick = true;
+let currentPlayer = pirate;
+let startingPlayer = pirate;
+let allowClick = true;
 
 // functions 
 
@@ -118,7 +118,7 @@ function checkForWinCondition(){
 }
 
 function checkForDraw(){
-  var count = 0; 
+  let count = 0; 
 
   for (var i = 0; i < gameBoard.length; i++){
     if (gameBoard.includes(i)) {
