@@ -39,8 +39,6 @@ const ninja = createPlayerObject('ninja', ninjaImg, ninjaWins);
 let currentPlayer = pirate;
 let startingPlayer = pirate;
 
-
-
 let increaseWins =  currentPlayer => {
   currentPlayer.wins +=1;
 
@@ -64,11 +62,13 @@ let togglePlayerTurnDisplay = () => {
 }
 
 let updateGameBoard = (event) => {
-  for (var i = 0; i < gameBoard.length; i++){
-    if (parseInt(event.target.id) === gameBoard[i]){
-      gameBoard.splice(i, 1, currentPlayer.id);
+
+  gameBoard.forEach(cell => {
+    if (parseInt(event.target.id) === cell) {
+      gameBoard.splice(cell, 1, currentPlayer.id);
     }
-  }
+  });
+
   addPlayerTokenToGameBoard(event);
   return gameBoard;
 }
@@ -84,7 +84,6 @@ let announceWinnerAndEndGame = () => {
   increaseWins(currentPlayer);
   setTimeout(resetBoard, 4000);
 }
-
 
 let checkForWinCondition = () => {   
   if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
@@ -119,14 +118,14 @@ let checkForWinCondition = () => {
 }
 
 let checkForDraw = () => {
-  let count = 0; 
+  let count = 0;  
+ 
+  gameBoard.forEach(space => {
+    if(typeof space === 'number'){
+      count +=1; 
+    }
+  }); 
 
-  for (var i = 0; i < gameBoard.length; i++){
-    if (gameBoard.includes(i)) {
-      count += 1;
-    } 
-  } 
-  
   if (count === 0){
     displayPlayerTurn.innerHTML = `It's a draw.`;
     setTimeout(resetBoard, 4000);
@@ -139,9 +138,7 @@ let checkForDraw = () => {
 let resetBoard = () => {
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
-  for (var i = 0; i < gameBoardCells.length; i++){
-    gameBoardCells[i].innerHTML='';
-  }
+  gameBoardCells.forEach(cell => cell.innerHTML = ''); 
 
   startingPlayer = (startingPlayer === pirate) ? ninja : pirate; 
   currentPlayer = startingPlayer;
